@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    image: framepack
+    ports:
+      - "7861:7861"
+    volumes:
+      - ~/HF_HOME:/app/hf_download
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [compute, utility, gpu]
